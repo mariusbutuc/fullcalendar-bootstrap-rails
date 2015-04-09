@@ -1,7 +1,7 @@
 module Fullcalendar
   module Bootstrap
     module Rails
-      VERSION = '0.1.0'
+      VERSION = '2.3.1.0'
     end
   end
 end
