@@ -9,9 +9,9 @@
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
+Add this gem and its [momentjs][moment] dependency to your application's Gemfile:
 ```ruby
+gem 'momentjs-rails'
 gem 'fullcalendar-bootstrap-rails'
 ```
 
@@ -23,6 +23,32 @@ Or install it yourself as:
 
     $ gem install fullcalendar-bootstrap-rails
 
+At this point, the files from the FullCalendar project are in your asset 
+pipeline's path… all you have to do is require them in the appropriate places.
+
+Here is an example:
+* CSS:
+  ```scss
+  // app/assets/stylesheets/application.scss
+
+  @import "bootstrap-sprockets";
+  @import "bootstrap";
+  // after the bootstrap dependency
+  @import "fullcalendar";
+  ```
+
+* javascript:
+  ```js
+  // app/assets/javascripts/application.js
+
+  //= require bootstrap-sprockets
+  //= require moment
+  // after the bootstrap and moment dependencies
+  //= require fullcalendar
+  ```
+
+For more details and options, check the [fullcalendar-rails installation section][fullcalendar-rails-install].
+
 ### A note on versioning
 
 First noticed this type of versioning with @bokmann's [fullcalendar-rails][fullcalendar-rails]:
@@ -31,7 +57,7 @@ First noticed this type of versioning with @bokmann's [fullcalendar-rails][fullc
 
 Makes sense to me: It's [Semantic Versioning][semver], just that a different semantic. I'm inheriting it, this way you can explicitly require a specific version of FullCalendar, if available:
 
-    gem 'fullcalendar-bootstrap-rails', '~> X.Y.Z.0'
+    gem 'fullcalendar-bootstrap-rails', '~> 2.3.1.0'
 
 where the digit after the [semantical patch version][semver] indicates the release of this gem.
 
@@ -59,5 +85,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
   [fullcalendar]: http://fullcalendar.io/
   [fullcalendar-rails]: https://github.com/bokmann/fullcalendar-rails
+  [fullcalendar-rails-install]: https://github.com/bokmann/fullcalendar-rails#installation
+  [moment]: http://momentjs.com/
   [bootstrap]: http://getbootstrap.com/
   [semver]: http://semver.org/
