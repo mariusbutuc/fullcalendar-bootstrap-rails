@@ -8668,7 +8668,13 @@ function Header(calendar, options) {
 
 
 	function renderSection(position) {
-		var sectionEl = $('<div class="fc-' + position + '"/>');
+		var positioningClass;
+		if('center' == position) {
+			positioningClass = 'fc-' + position;
+		} else {
+			positioningClass = 'pull-' + position;
+		}
+		var sectionEl = $('<div class="' + positioningClass + '"/>');
 		var buttonStr = options.header[position];
 
 		if (buttonStr) {
