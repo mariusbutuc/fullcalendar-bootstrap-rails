@@ -8731,8 +8731,10 @@ function Header(calendar, options) {
 
 							classes = [
 								'fc-' + buttonName + '-button',
-								tm + '-button',
-								tm + '-state-default'
+								// tm + '-button',
+								// tm + '-state-default'
+								'btn',
+								'btn-default'
 							];
 
 							button = $( // type="button" so that it doesn't submit a form
@@ -8799,7 +8801,8 @@ function Header(calendar, options) {
 				if (groupChildren.length > 1) {
 					groupEl = $('<div/>');
 					if (isOnlyButtons) {
-						groupEl.addClass('fc-button-group');
+						// groupEl.addClass('fc-button-group');
+						groupEl.addClass('btn-group');
 					}
 					groupEl.append(groupChildren);
 					sectionEl.append(groupEl);
