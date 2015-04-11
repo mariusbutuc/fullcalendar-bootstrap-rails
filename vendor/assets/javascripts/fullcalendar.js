@@ -8753,56 +8753,66 @@ function Header(calendar, options) {
 									if (!button.hasClass(tm + '-state-disabled')) {
 
 										buttonClick();
-
-										// after the click action, if the button becomes the "active" tab, or disabled,
-										// it should never have a hover class, so remove it now.
-										if (
-											button.hasClass(tm + '-state-active') ||
-											button.hasClass(tm + '-state-disabled')
-										) {
-											button.removeClass(tm + '-state-hover');
-										}
+								//
+								// 		Bootstrap hadles disabled buttons gracefully enough.
+								//
+								// 		// after the click action, if the button becomes the "active" tab, or disabled,
+								// 		// it should never have a hover class, so remove it now.
+								// 		if (
+								// 			button.hasClass(tm + '-state-active') ||
+								// 			button.hasClass(tm + '-state-disabled')
+								// 		) {
+								// 			button.removeClass(tm + '-state-hover');
+								// 		}
 									}
-								})
-								.mousedown(function() {
-									// the *down* effect (mouse pressed in).
-									// only on buttons that are not the "active" tab, or disabled
-									button
-										.not('.' + tm + '-state-active')
-										.not('.' + tm + '-state-disabled')
-										.addClass(tm + '-state-down');
-								})
-								.mouseup(function() {
-									// undo the *down* effect
-									button.removeClass(tm + '-state-down');
-								})
-								.hover(
-									function() {
-										// the *hover* effect.
-										// only on buttons that are not the "active" tab, or disabled
-										button
-											.not('.' + tm + '-state-active')
-											.not('.' + tm + '-state-disabled')
-											.addClass(tm + '-state-hover');
-									},
-									function() {
-										// undo the *hover* effect
-										button
-											.removeClass(tm + '-state-hover')
-											.removeClass(tm + '-state-down'); // if mouseleave happens before mouseup
-									}
-								);
+								});
+								//
+								// Bootstrap hadles the *down* effect gracefully enough.
+								//
+								// .mousedown(function() {
+								// 	// the *down* effect (mouse pressed in).
+								// 	// only on buttons that are not the "active" tab, or disabled
+								// 	button
+								// 		.not('.' + tm + '-state-active')
+								// 		.not('.' + tm + '-state-disabled')
+								// 		.addClass(tm + '-state-down');
+								// })
+								// .mouseup(function() {
+								// 	// undo the *down* effect
+								// 	button.removeClass(tm + '-state-down');
+								// })
+								//
+								// Bootstrap hadles the *hover* effect gracefully enough.
+								//
+								// .hover(
+								// 	function() {
+								// 		// the *hover* effect.
+								// 		// only on buttons that are not the "active" tab, or disabled
+								// 		button
+								// 			.not('.' + tm + '-state-active')
+								// 			.not('.' + tm + '-state-disabled')
+								// 			.addClass(tm + '-state-hover');
+								// 	},
+								// 	function() {
+								// 		// undo the *hover* effect
+								// 		button
+								// 			.removeClass(tm + '-state-hover')
+								// 			.removeClass(tm + '-state-down'); // if mouseleave happens before mouseup
+								// 	}
+								// );
 
 							groupChildren = groupChildren.add(button);
 						}
 					}
 				});
 
-				if (isOnlyButtons) {
-					groupChildren
-						.first().addClass(tm + '-corner-left').end()
-						.last().addClass(tm + '-corner-right').end();
-				}
+				// Using Bootstrap's btn-group, which handles automatically in CSS
+				//
+				// if (isOnlyButtons) {
+				// 	groupChildren
+				// 		.first().addClass(tm + '-corner-left').end()
+				// 		.last().addClass(tm + '-corner-right').end();
+				// }
 
 				if (groupChildren.length > 1) {
 					groupEl = $('<div/>');
@@ -8830,27 +8840,41 @@ function Header(calendar, options) {
 
 	function activateButton(buttonName) {
 		el.find('.fc-' + buttonName + '-button')
-			.addClass(tm + '-state-active');
+			// .addClass(tm + '-state-active');
+			.removeClass('btn-default')
+			.addClass('btn-primary');
 	}
 
 
 	function deactivateButton(buttonName) {
 		el.find('.fc-' + buttonName + '-button')
-			.removeClass(tm + '-state-active');
+			// .removeClass(tm + '-state-active');
+			.removeClass('btn-primary')
+			.addClass('btn-default');
 	}
 
 
 	function disableButton(buttonName) {
 		el.find('.fc-' + buttonName + '-button')
 			.attr('disabled', 'disabled')
-			.addClass(tm + '-state-disabled');
+			// .addClass(tm + '-state-disabled');
+			// Such a hack!
+			// Just because of the Slate bootswatch
+			.removeClass('btn-default')
+			.addClass('btn-primary');
+			// Hack over… for now!
 	}
 
 
 	function enableButton(buttonName) {
 		el.find('.fc-' + buttonName + '-button')
 			.removeAttr('disabled')
-			.removeClass(tm + '-state-disabled');
+			// .removeClass(tm + '-state-disabled');
+			// Such a hack!
+			// Just because of the Slate bootswatch
+			.removeClass('btn-primary')
+			.addClass('btn-default');
+			// Hack over…
 	}
 
 
